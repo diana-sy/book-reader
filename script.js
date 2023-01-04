@@ -17,8 +17,9 @@ async function setup(){
     document.addEventListener("keypress", async e => {
         if(e.code !=="Space") return
     canvas.getContext("2d").drawImage(video, 0,0, video.width, video.height)
-    const obj = await  worker.recognize(canvas)
-    console.log(obj)
+    const {
+        data:{text},} = await  worker.recognize(canvas)
+    console.log(text)
 
      })
    })
