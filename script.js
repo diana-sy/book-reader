@@ -1,5 +1,5 @@
 const video = document.querySelector("video")
-const textElement = document.querySelector("[date-text]")
+const textElement = document.querySelector("[data-text]")
 
 async function setup(){
   const stream = await navigator.mediaDevices.getUserMedia({video:true})
@@ -22,7 +22,7 @@ async function setup(){
         data:{text},} = await  worker.recognize(canvas)
 
         speechSynthesis.speak(new SpeechSynthesisUtterance(text.replace(/\s/g," ")))
-        
+
     textElement.textContent = text
 
      })
