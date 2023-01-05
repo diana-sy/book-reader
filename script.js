@@ -1,4 +1,5 @@
 const video = document.querySelector("video")
+const textElement = document.querySelector("[date-text]")
 
 async function setup(){
   const stream = await navigator.mediaDevices.getUserMedia({video:true})
@@ -19,7 +20,10 @@ async function setup(){
     canvas.getContext("2d").drawImage(video, 0,0, video.width, video.height)
     const {
         data:{text},} = await  worker.recognize(canvas)
-    console.log(text)
+
+        speechSynthesis.speak(new SpeechSynthesisUtterance(text.replace(/\s/g," ")))
+        
+    textElement.textContent = text
 
      })
    })
